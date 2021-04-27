@@ -1,13 +1,26 @@
 import React, { useState } from "react";
-import Album from "./Album";
-import Tracks from "./Tracks";
-import All from "./All";
+import Pending from "./assets/Pending";
+import Rejected from "./assets/Rejected";
+import Moderation from "./assets/Moderation";
+import Approved from "./assets/Approved";
+import Injested from "./assets/Injested";
+import Live from "./assets/Live";
+import {
+  Link,
+  Route,
+  Switch,
+  useLocation,
+  useRouteMatch,
+} from "react-router-dom";
 
 function Assets() {
-  const [tab, settab] = useState(1);
+  const location = useLocation();
+  let { path, url } = useRouteMatch();
 
-  let active = "border-b-2 border-purple-700 bg-white";
-  let passive = "bg-gray-50 text-gray-600 border";
+  let active =
+    "flex-1 text-center h-full py-3 border-b-2 border-purple-700 bg-white";
+  let passive =
+    "flex-1 text-center py-3 h-full bg-gray-50 text-gray-600 border";
 
   return (
     <div className="bg-gray-100  h-screen">
@@ -15,34 +28,66 @@ function Assets() {
         <h1 className="text-3xl font-semibold ml-8 pl-10 font-sans ">Music</h1>
       </div>
       <div className="flex border flex-wrap items-center h-14 ">
-        <div
-          onClick={() => settab(1)}
-          className={`flex-grow py-4 cursor-pointer hover:text-black   ${
-            tab === 1 ? active : passive
-          }`}
+        <Link
+          to={`${url}/pending`}
+          className={location.pathname.includes("pending") ? active : passive}
         >
-          <i className="fas fa-record-vinyl mx-5"></i>Albums
-        </div>
-        <div
-          onClick={() => settab(2)}
-          className={`flex-grow py-4 cursor-pointer hover:text-black ${
-            tab === 2 ? active : passive
-          }`}
+          Pending
+        </Link>
+        <Link
+          to={`${url}/rejected`}
+          className={location.pathname.includes("rejected") ? active : passive}
         >
-          <i className="fas fa-music mx-5"></i> Tracks
-        </div>
-        <div
-          onClick={() => settab(3)}
-          className={`flex-grow py-4 pl-6 hover:text-black cursor-pointer ${
-            tab === 3 ? active : passive
-          }`}
+          Rejected
+        </Link>
+        <Link
+          to={`${url}/injested`}
+          className={location.pathname.includes("Injested") ? active : passive}
         >
-          All
-        </div>
+          Injested
+        </Link>
+        <Link
+          to={`${url}/Moderation`}
+          className={
+            location.pathname.includes("Moderation") ? active : passive
+          }
+        >
+          Moderation
+        </Link>
+        <Link
+          to={`${url}/Approved`}
+          className={location.pathname.includes("Approved") ? active : passive}
+        >
+          Approved
+        </Link>
+
+        <Link
+          to={`${url}/Live`}
+          className={location.pathname.includes("Live") ? active : passive}
+        >
+          Live
+        </Link>
       </div>
-      {tab === 1 ? <Album /> : null}
-      {tab === 2 ? <Tracks /> : null}
-      {tab === 3 ? <All /> : null}
+      <Switch>
+        <Route path="/panel/assets/pending">
+          <Pending />
+        </Route>
+        <Route path="/panel/assets/rejected">
+          <Rejected />
+        </Route>
+        <Route path="/panel/assets/Moderation">
+          <Moderation />
+        </Route>
+        <Route path="/panel/assets/Approved">
+          <Approved />
+        </Route>
+        <Route path="/panel/assets/Injested">
+          <Injested />
+        </Route>
+        <Route path="/panel/assets/Live">
+          <Live />
+        </Route>
+      </Switch>
     </div>
   );
 }
