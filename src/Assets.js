@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Pending from "./assets/Pending";
 import Rejected from "./assets/Rejected";
 import Moderation from "./assets/Moderation";
@@ -15,7 +15,7 @@ import {
 
 function Assets() {
   const location = useLocation();
-  let { path, url } = useRouteMatch();
+  let { url } = useRouteMatch();
 
   let active =
     "flex-1 text-center h-full py-3 border-b-2 border-purple-700 bg-white";
