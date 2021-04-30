@@ -30,7 +30,12 @@ function Assets() {
       <div className="flex border flex-wrap items-center h-14 ">
         <Link
           to={`${url}/pending`}
-          className={location.pathname.includes("pending") ? active : passive}
+          className={
+            location.pathname.includes("pending") ||
+            location.pathname === "/panel/assets"
+              ? active
+              : passive
+          }
         >
           Pending
         </Link>
@@ -42,7 +47,7 @@ function Assets() {
         </Link>
         <Link
           to={`${url}/injested`}
-          className={location.pathname.includes("Injested") ? active : passive}
+          className={location.pathname.includes("injested") ? active : passive}
         >
           Injested
         </Link>
@@ -86,6 +91,9 @@ function Assets() {
         </Route>
         <Route path="/panel/assets/Live">
           <Live />
+        </Route>
+        <Route path="/panel/assets/">
+          <Pending />
         </Route>
       </Switch>
     </div>

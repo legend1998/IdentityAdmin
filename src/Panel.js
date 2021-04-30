@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import Assets from "./Assets";
 import Transactions from "./Transactions";
 import Dispute from "./Dispute";
+import Viewalbum from "./Viewalbum";
 function Panel() {
   let { path } = useRouteMatch();
   return (
@@ -21,7 +22,13 @@ function Panel() {
           <Route path={`${path}/dispute`}>
             <Dispute />
           </Route>
+          <Route path={`${path}/viewAlbum/:id`}>
+            <Viewalbum />
+          </Route>
           <Route path={`${path}/dashboard`}>
+            <Dashboard />
+          </Route>
+          <Route path={`${path}/`}>
             <Dashboard />
           </Route>
         </Switch>
