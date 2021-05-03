@@ -7,7 +7,10 @@ export default function validateRefs(refs) {
       message = "empty fields";
       return;
     }
-    if (element.current.value.length < 3) {
+    if (
+      element.current.attributes["type"].value !== "number" &&
+      element.current.value.length < 3
+    ) {
       ok = false;
       message = "smaller word";
       return;
@@ -50,4 +53,12 @@ export function statusSwitch(status) {
         <span className="bg-yellow-500 text-white p-3 shadow-lg">pending</span>
       );
   }
+}
+export function getEarnigns(data) {
+  var total = 0;
+  data.forEach((d) => {
+    total += Number(d.earnings);
+  });
+
+  return total;
 }

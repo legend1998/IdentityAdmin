@@ -183,7 +183,9 @@ function Viewalbum() {
         <div className="bg-gray-100 min-h-screen p-10">
           {tab === 1 ? <OverViewAlbum data={album} /> : null}
           {tab === 2 ? <VIewTrackAlbum id={params.id} /> : null}
-          {tab === 3 ? <ViewAlbumStats stats={album?.stats} /> : null}
+          {tab === 3 ? (
+            <ViewAlbumStats id={params.id} stats={album?.stats} />
+          ) : null}
           {tab === 4 ? <ViewAlbumMore codes={album?.codes} /> : null}
         </div>
       </div>
