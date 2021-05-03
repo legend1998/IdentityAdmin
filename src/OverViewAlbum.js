@@ -1,7 +1,6 @@
 import React from "react";
 
 function OverViewAlbum({ data }) {
-  console.log(data);
   return (
     <div className=" flex items-center justify-center flex-wrap">
       <div className="">

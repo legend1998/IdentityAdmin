@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { firedb } from "./Firebaseconfig";
 import AWN from "awesome-notifications";
 import { useHistory } from "react-router-dom";
+import { statusSwitch } from "./utils/Utils";
 
 function Viewalbum() {
   const params = useParams();
@@ -56,43 +57,6 @@ function Viewalbum() {
     });
   }
 
-  function statusSwitch(status) {
-    switch (status) {
-      case "rejected":
-        return (
-          <span className="bg-red-500 text-white p-3 shadow-lg">rejected</span>
-        );
-      case "injested":
-        return (
-          <span className="bg-yellow-700 text-white p-3 shadow-lg">
-            injested
-          </span>
-        );
-      case "moderation":
-        return (
-          <span className="bg-blue-400 text-white p-3 shadow-lg">
-            moderation
-          </span>
-        );
-      case "approved":
-        return (
-          <span className="bg-green-500 text-white p-3 shadow-lg">
-            approved
-          </span>
-        );
-      case "live":
-        return (
-          <span className="bg-green-900 text-white p-3 shadow-lg">live</span>
-        );
-      default:
-        return (
-          <span className="bg-yellow-500 text-white p-3 shadow-lg">
-            pending
-          </span>
-        );
-    }
-  }
-
   const passive =
     "text-gray-500 bg-gray-200 w-1/4 text-center h-16 py-5 cursor-pointer";
   const active =
@@ -100,7 +64,7 @@ function Viewalbum() {
 
   if (!album)
     return (
-      <div class="w-full flex items-center justify-center h-44">
+      <div className="w-full flex items-center justify-center h-44">
         <i className="fas fa-spinner"></i>
       </div>
     );

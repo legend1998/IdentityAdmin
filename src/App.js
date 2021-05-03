@@ -3,6 +3,7 @@ import Login from "./Login";
 import Panel from "./Panel";
 import "./app.css";
 import { useStateValue } from "./StateProvider";
+import Signup from "./Signup";
 function App() {
   const [{ user }] = useStateValue();
 
@@ -10,7 +11,6 @@ function App() {
     <div className="App  font-graphik ">
       <Router>
         <Switch>
-          <Route path="/login"></Route>
           {user ? (
             <Route path="/panel">
               <Panel />

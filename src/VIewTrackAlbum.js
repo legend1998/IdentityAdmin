@@ -13,7 +13,6 @@ function VIewTrackAlbum({ id }) {
         var a = [];
         trackshot.forEach((snaptrack) => {
           a.push(snaptrack.data());
-          console.log(snaptrack.data());
         });
         setracks(a);
       });
@@ -32,8 +31,11 @@ function VIewTrackAlbum({ id }) {
           </tr>
         </thead>
         <tbody>
-          {tracks.map((t) => (
-            <tr className="h-12 text-left text-lg font-semibold border-b hover:bg-gray-50">
+          {tracks.map((t, index) => (
+            <tr
+              key={index}
+              className="h-12 text-left text-sm    font-semibold border-b hover:bg-gray-50"
+            >
               <td>
                 <input
                   type="checkbox"

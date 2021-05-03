@@ -1,17 +1,17 @@
 import AWN from "awesome-notifications";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { auth, firedb } from "./Firebaseconfig";
 import validateRefs from "./utils/Utils";
 import { useStateValue } from "./StateProvider";
 import { useHistory } from "react-router";
+import { useState } from "react";
 function Login() {
   //stats
 
-  const [loading, setLoading] = useState();
-
   //hooks
   const [{}, dispatch] = useStateValue();
+  const [loading, setloading] = useState(false);
   const history = useHistory();
 
   let email = useRef();
@@ -21,33 +21,46 @@ function Login() {
 
   const loginUser = (e) => {
     e.preventDefault();
-
+    setloading(true);
     let res = validateRefs(refs);
     if (res.success) {
-      auth
-        .signInWithEmailAndPassword(email.current.value, password.current.value)
-        .then((data) => {
-          if (data.user) {
-            new AWN().success("logged In", { position: "bottom-right" });
-            history.replace("/panel/dashboard");
-          }
-        })
-        .catch((e) => {
-          new AWN().alert(e.message, { position: "bottom-right" });
-        });
       firedb
-        .collection("user")
+        .collection("admin")
         .doc(email.current.value)
         .get()
         .then((user) => {
-          localStorage.setItem("user", JSON.stringify(user.data()));
-          dispatch({
-            type: "SET_USER",
-            user: user.data(),
-          });
+          if (user.data()) {
+            localStorage.setItem("user", JSON.stringify(user.data()));
+            dispatch({
+              type: "SET_USER",
+              user: user.data(),
+            });
+            auth
+              .signInWithEmailAndPassword(
+                email.current.value,
+                password.current.value
+              )
+              .then((data) => {
+                if (data.user) {
+                  new AWN().success("logged In", { position: "bottom-right" });
+                  history.replace("/panel/dashboard");
+                  return;
+                }
+              })
+              .catch((e) => {
+                new AWN().alert(e.message, { position: "bottom-right" });
+              })
+              .finally(() => {
+                setloading(false);
+              });
+          } else {
+            new AWN().alert("no user ", { position: "bottom-right" });
+            setloading(false);
+          }
         });
     } else {
       new AWN().alert(res.message, { position: "bottom-right" });
+      setloading(false);
     }
   };
 
@@ -91,13 +104,21 @@ function Login() {
               </button>
             </div>
             <div className="w-full flex items-center justify-end ">
-              <button
-                type="submit"
-                className="focus:outline-none h-full bg-blue-600 text-white p-5 w-44"
-                onClick={(e) => loginUser(e)}
-              >
-                Login <i className="fas fa-arrow-right mx-3"></i>
-              </button>
+              {loading ? (
+                <button
+                  className="focus:outline-none h-full w-44 bg-blue-600 text-white p-5"
+                  onClick={(e) => loginUser(e)}
+                >
+                  <i className="fas fa-spinner animate-spin  mx-3"></i>
+                </button>
+              ) : (
+                <button
+                  className="focus:outline-none h-full w-44 bg-blue-600 text-white p-5"
+                  onClick={(e) => loginUser(e)}
+                >
+                  Login <i className="fas fa-arrow-right mx-3"></i>
+                </button>
+              )}
             </div>
           </form>
 

@@ -6,6 +6,8 @@ import Assets from "./Assets";
 import Transactions from "./Transactions";
 import Dispute from "./Dispute";
 import Viewalbum from "./Viewalbum";
+import ViewDispute from "./ViewDispute";
+import VIewUser from "./VIewUser";
 function Panel() {
   let { path } = useRouteMatch();
   return (
@@ -22,8 +24,14 @@ function Panel() {
           <Route path={`${path}/dispute`}>
             <Dispute />
           </Route>
+          <Route path={`${path}/viewdispute/:id`}>
+            <ViewDispute />
+          </Route>
           <Route path={`${path}/viewAlbum/:id`}>
             <Viewalbum />
+          </Route>
+          <Route path={`${path}/viewUser/:email`}>
+            <VIewUser />
           </Route>
           <Route path={`${path}/dashboard`}>
             <Dashboard />

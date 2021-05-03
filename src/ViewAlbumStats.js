@@ -10,57 +10,57 @@ import PieChart, {
   Subtitle,
 } from "devextreme-react/pie-chart";
 
-function ViewAlbumStats() {
+function ViewAlbumStats({ stats }) {
   var data = [
     {
-      Country: "Brazil",
-      Export: 243,
-      Import: 233,
+      platform: "Brazil",
+      views: 243,
+      earnings: 233,
     },
     {
-      Country: "Russia",
-      Export: 529,
-      Import: 335,
+      platform: "Russia",
+      views: 529,
+      earnings: 335,
     },
     {
-      Country: "India",
-      Export: 293,
-      Import: 489,
+      platform: "India",
+      views: 293,
+      earnings: 489,
     },
     {
-      Country: "China",
-      Export: 2049,
-      Import: 1818,
+      platform: "China",
+      views: 2049,
+      earnings: 1818,
     },
     {
-      Country: "Japan",
-      Export: 799,
-      Import: 886,
+      platform: "Japan",
+      views: 799,
+      earnings: 886,
     },
     {
-      Country: "USA",
-      Export: 1547,
-      Import: 2335,
+      platform: "USA",
+      views: 1547,
+      earnings: 2335,
     },
     {
-      Country: "Canada",
-      Export: 455,
-      Import: 475,
+      platform: "Canada",
+      views: 455,
+      earnings: 475,
     },
     {
-      Country: "France",
-      Export: 569,
-      Import: 674,
+      platform: "France",
+      views: 569,
+      earnings: 674,
     },
     {
-      Country: "England",
-      Export: 468,
-      Import: 680,
+      platform: "England",
+      views: 468,
+      earnings: 680,
     },
     {
-      Country: "Germany",
-      Export: 1407,
-      Import: 1167,
+      platform: "Germany",
+      views: 1407,
+      earnings: 1167,
     },
   ];
 
@@ -85,22 +85,19 @@ function ViewAlbumStats() {
         <CommonSeriesSettings>
           <Label visible={false} />
         </CommonSeriesSettings>
-        <Series name="Import" argumentField="Country" valueField="Import" />
+        <Series name="views" argumentField="platform" valueField="views" />
 
         <Export enabled={true} />
         <Legend visible={true} />
 
-        <Tooltip
-          enabled={true}
-          format="currency"
-          customizeTooltip={customizeTooltip}
-        />
+        <Tooltip enabled={true} customizeTooltip={customizeTooltip} />
       </PieChart>
       <div className="my-5">
         <div className="shadow-lg flex justify-between items-center bg-white ">
           <h1 className="font-semibold text-lg mx-4 ">Earnings</h1>
           <span className="h-14 py-4 w-32 bg-blue-500 text-white text-center my-auto">
-            <i className="fas fa-rupee-sign mx-2"></i>100
+            <i className="fas fa-rupee-sign mx-2"></i>
+            {stats?.earnings ? stats.earnings : 0}
           </span>
         </div>
       </div>
