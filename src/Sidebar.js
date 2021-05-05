@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { auth } from "./Firebaseconfig";
 import { useHistory, useLocation } from "react-router";
 import { useStateValue } from "./StateProvider";
+import logo from "./utils/logo.png";
 
 function Sidebar() {
   //stats
@@ -22,11 +23,7 @@ function Sidebar() {
   return (
     <div className="lg:flex w-72 bg-sideblack  hidden items-center flex-col justify-between text-lg">
       <div className="w-54 flex flex-col justify-start px-8 my-2 text-gray-500">
-        <img
-          src="https://cdn.identitymusic.com/img/logo/im-white.png"
-          alt="logo"
-          className="my-8 self-center"
-        />
+        <img src={logo} alt="logo" className="my-8 self-center" />
         <Link
           to="/panel/dashboard"
           className={

@@ -27,33 +27,6 @@ function Signup() {
     e.preventDefault();
     let res = validateRefs(refs);
     if (res.success) {
-      firedb
-        .collection("admin")
-        .doc(email.current.value)
-        .set({
-          fname: fname.current.value,
-          lname: lname.current.value,
-          email: email.current.value,
-        })
-        .then((res) => {
-          localStorage.setItem("user", JSON.stringify(res.data()));
-          dispatch({
-            type: "SET_USER",
-            user: res.data(),
-          });
-          new AWN().success("account created successfully", {
-            position: "bottom-right",
-          });
-        })
-        .catch((e) => {
-          new AWN().alert("something went wrong try again later", {
-            position: "bottom-right",
-          });
-          return;
-        })
-        .finally(() => {
-          setLoading(false);
-        });
       auth
         .createUserWithEmailAndPassword(
           email.current.value,
@@ -61,17 +34,41 @@ function Signup() {
         )
         .then((data) => {
           if (data.user) {
+            firedb
+              .collection("admin")
+              .doc(email.current.value)
+              .set({
+                fname: fname.current.value,
+                lname: lname.current.value,
+                email: email.current.value,
+              })
+              .then((res) => {
+                localStorage.setItem("user", JSON.stringify(res.data()));
+                dispatch({
+                  type: "SET_USER",
+                  user: res.data(),
+                });
+                new AWN().success("account created successfully", {
+                  position: "bottom-right",
+                });
+                history.replace("/panel/dashboard");
+                return;
+              })
+              .catch((e) => {
+                new AWN().alert(e.message, {
+                  position: "bottom-right",
+                });
+                return;
+              })
+              .finally(() => {
+                setLoading(false);
+              });
           }
-          history.replace("/panel/dashboard");
-          return;
         })
         .catch((e) => {
-          new AWN().alert("something went wrong try again later", {
+          new AWN().alert(e.message, {
             position: "bottom-right",
           });
-        })
-        .finally(() => {
-          setLoading(false);
         });
     } else {
       new AWN().warning(res.message, { position: "bottom-right" });

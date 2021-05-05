@@ -3,7 +3,7 @@ import Login from "./Login";
 import Panel from "./Panel";
 import "./app.css";
 import { useStateValue } from "./StateProvider";
-import Signup from "./Signup";
+// import Signup from "./Signup";
 function App() {
   const [{ user }] = useStateValue();
 
@@ -16,7 +16,10 @@ function App() {
               <Panel />
             </Route>
           ) : null}
-
+          {/* 
+          <Route path="/signup">
+            <Signup />
+          </Route> */}
           <Route path="/">
             <Login />
           </Route>

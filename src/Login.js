@@ -6,6 +6,7 @@ import validateRefs from "./utils/Utils";
 import { useStateValue } from "./StateProvider";
 import { useHistory } from "react-router";
 import { useState } from "react";
+import logo from "./utils/logo.png";
 function Login() {
   //stats
 
@@ -67,11 +68,7 @@ function Login() {
   return (
     <div className="min-h-screen w-full border-8 border-white login">
       <div className=" h-32 p-10 ">
-        <img
-          src="https://cdn.identitymusic.com/img/logo/im-white.png"
-          alt="logo"
-          className="  h-20"
-        />
+        <img src={logo} alt="logo" className="  h-20" />
       </div>
       <div className="flex items-end  w-full md:w-2/3 h-full   justify-center">
         <div className="text-white w-full lg:w-1/2 mt-10  p-5">
