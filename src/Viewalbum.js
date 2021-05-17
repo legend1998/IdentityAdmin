@@ -8,6 +8,13 @@ import { firedb } from "./Firebaseconfig";
 import AWN from "awesome-notifications";
 import { useHistory } from "react-router-dom";
 import { statusSwitch } from "./utils/Utils";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 function Viewalbum() {
   const params = useParams();
@@ -15,6 +22,9 @@ function Viewalbum() {
   const [show, setshow] = useState(false);
   const [tab, setab] = useState(1);
   const [album, setalbum] = useState(null);
+  const [open, setopen] = useState(false);
+  const [status, setStatus] = useState("");
+  const [message, setmessage] = useState("");
 
   useEffect(() => {
     firedb
@@ -29,38 +39,39 @@ function Viewalbum() {
       });
   }, [params.id]);
 
-  function setstatus(status) {
+  function confirmchanges() {
     let notifier = new AWN();
-    let onOk = () => {
-      firedb
-        .collection("album")
-        .doc(params.id)
-        .update({
-          status: status,
-        })
-        .then(() => {
-          setalbum({ ...album, status: status });
+    firedb
+      .collection("album")
+      .doc(params.id)
+      .update({
+        status: status,
+        message: message,
+      })
+      .then(() => {
+        setalbum({ ...album, status: status, message: message });
 
-          notifier.info("status updated.");
-        })
-        .catch((e) => {
-          notifier.info(e.message);
-        });
-    };
-    let onCancel = () => {
-      notifier.info("You pressed Cancel");
-    };
-    notifier.confirm("Are you sure want to update status?", onOk, onCancel, {
-      labels: {
-        confirm: "Dangerous action",
-      },
-    });
+        notifier.info("status updated.");
+      })
+      .catch((e) => {
+        notifier.info(e.message);
+      });
+    setopen(false);
+  }
+
+  function setstatus(status) {
+    setopen(true);
+    setStatus(status);
   }
 
   const passive =
     "text-gray-500 bg-gray-200 w-1/4 text-center h-16 py-5 cursor-pointer";
   const active =
     "border-b  border-indigo-500 bg-white w-1/4 text-center py-5 h-16 cursor-pointer";
+
+  function handleClose() {
+    setopen(false);
+  }
 
   if (!album)
     return (
@@ -72,6 +83,36 @@ function Viewalbum() {
     return (
       <div>
         {/* header */}
+        <Dialog
+          open={open}
+          maxWidth="md"
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Album Status</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Reason of changes or suggestion.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              onChange={(e) => setmessage(e.target.value)}
+              margin="dense"
+              id="name"
+              label="message"
+              type="email"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={confirmchanges} color="primary">
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
         <div className="flex px-3 py-8 flex-wrap">
           <div className="w-20 text-center">
             <i

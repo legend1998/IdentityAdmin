@@ -8,6 +8,7 @@ import Dispute from "./Dispute";
 import Viewalbum from "./Viewalbum";
 import ViewDispute from "./ViewDispute";
 import VIewUser from "./VIewUser";
+import NewTransaction from "./NewTransaction";
 function Panel() {
   let { path } = useRouteMatch();
   return (
@@ -20,6 +21,9 @@ function Panel() {
           </Route>
           <Route path={`${path}/transactions`}>
             <Transactions />
+          </Route>
+          <Route path={`${path}/newtransaction`}>
+            <NewTransaction />
           </Route>
           <Route path={`${path}/dispute`}>
             <Dispute />

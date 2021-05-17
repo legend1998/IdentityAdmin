@@ -1,8 +1,11 @@
+import { firedb } from "../Firebaseconfig";
+
 export default function validateRefs(refs) {
   let ok = true;
   let message = "";
   refs.forEach((element) => {
-    if (element.current.value === "") {
+    console.log(element);
+    if (element.current.value === "" || element.current.value === "default") {
       ok = false;
       message = "empty fields";
       return;
@@ -61,4 +64,58 @@ export function getEarnigns(data) {
   });
 
   return total;
+}
+
+export async function updateEarnings(user) {
+  return new Promise(async (resolve, reject) => {
+    var total = 0;
+    var paid = 0;
+    var stats = [];
+    await firedb
+      .collection("album")
+      .where("email", "==", user)
+      .get()
+      .then((data) => {
+        data.docs.forEach((d) => {
+          var datastate = d.data();
+          if (datastate?.stats) stats.push(datastate.stats);
+        });
+        return true;
+      })
+      .catch((e) => false);
+
+    stats.forEach((stat) => {
+      stat.forEach((earn) => {
+        total += Number.parseInt(earn.earnings);
+      });
+    });
+
+    firedb
+      .collection("user")
+      .doc(user)
+      .collection("transactions")
+      .onSnapshot((snapshot) => {
+        console.log(stats);
+        snapshot.docs.forEach((snap) => {
+          paid += snap.data().amount;
+        });
+        console.log(stats);
+        firedb
+          .collection("user")
+          .doc(user)
+          .update({
+            transactionStat: { outstanding: total - paid, total: total },
+          })
+          .then(() => {
+            resolve(true);
+          })
+          .catch((e) => {
+            reject(false);
+          });
+      });
+  });
+}
+
+export function calculateTotalTransaction(data) {
+  return data.reduce((total, a) => total + Number.parseInt(a.amount), 0);
 }

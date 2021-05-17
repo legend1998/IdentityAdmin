@@ -7,6 +7,9 @@ function OverViewAlbum({ data }) {
         <img src={data?.coverImage} width="450px" alt="" />
       </div>
       <div className="bg-white flex-1 h-full m-5">
+        <p className="text-md px-5 text-red-600">
+          <span className="text-lg font-bold">Message: </span> {data?.message}
+        </p>
         <h1 className="text-xl font-semibold py-5 px-10 border-b ">
           Album Info
         </h1>
