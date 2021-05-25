@@ -86,9 +86,7 @@ function Signup() {
       <div className="flex items-center w-full md:w-2/3  h-full  justify-center">
         <div className="text-white w-full lg:w-1/2 mt-10 p-5">
           <h1 className="text-7xl">Sign Up.</h1>
-          <p className="text-2xl my-5 text-gray-500">
-            TrakLab | Client Sign Up Portal
-          </p>
+          <p className="text-2xl my-5 text-gray-500">TrakLab | Admin Portal</p>
           <form className="text-black ">
             <div className=" p-0 flex h-14 items-center ">
               <input

@@ -89,7 +89,7 @@ function VIewUser() {
             }}
             className="focus:outline-none p-3 m-3 border bg-indigo-600 text-white"
           >
-            update
+            Update
           </button>
         )}
       </div>

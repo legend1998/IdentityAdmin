@@ -72,38 +72,33 @@ function VIewTrackAlbum({ id }) {
           </DialogActions>
         </Dialog>
       </div>
-      <table className="table-fixed text-xs text-gray-700 w-full h-60">
+      <table className="table-fixed text-gray-700 w-full h-full">
         <thead className="text-left">
           <tr className="h-12 border">
-            <th className=" w-1/12"></th>
-            <th className=" w-2/12">Track Name</th>
-            <th className="w-2/12">Artist</th>
-            <th className=" w-1/12">ISRC</th>
-            <th className="w-4/12">Audio</th>
-            <th className=" w-1/12">Language</th>
+            <th className=" w-2/12 pl-10 font-medium ">Track Name</th>
+            <th className="w-2/12 pl-5 font-medium ">Artist</th>
+            <th className=" w-2/12 font-medium ">ISRC</th>
+            <th className=" w-1/12 text-center font-medium ">CRBT Time</th>
+            <th className="w-4/12 text-center font-medium ">Audio</th>
+            <th className="w-1/12 text-center font-medium ">View</th>
           </tr>
         </thead>
         <tbody>
           {tracks.map((t, index) => (
             <tr
               key={index}
-              className="h-12 text-left text-sm    font-semibold border-b hover:bg-gray-50"
+              className="h-16 text-left text-sm font-semibold border-b hover:bg-gray-50"
             >
-              <td>
-                <input
-                  type="checkbox"
-                  className="w-8 h-8 border focus:outline-none mx-4"
-                />
-              </td>
-              <td>{t.releaseTitle}</td>
-              <td>{t.primaryArtist}</td>
-              <td>{t.isrc}</td>
-              <td>
+              <td className=" w-2/12 pl-10 ">{t.releaseTitle}</td>
+              <td className=" w-2/12 pl-5">{t.primaryArtist}</td>
+              <td className=" w-2/12">{t.isrc}</td>
+              <td className=" w-1/12 text-center">{t.crbt}</td>
+              <td className=" w-4/12 pl-16">
                 <audio src={t.trackURL} controls></audio>
               </td>
-              <td>{t.lyricLanguage}</td>
-              <td>
+              <td className=" w-1/12 pl-8 ">
                 <button
+                  className="h-6 w-12 bg-blue-500 hover:bg-blue-800 text-white text-center justify-center"
                   onClick={() => {
                     setCurrentTrack(t);
                     setopen(true);

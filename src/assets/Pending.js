@@ -34,7 +34,7 @@ function Pending() {
     { field: "label", headerName: "Label", width: 180 },
     { field: "releaseDate", headerName: "Release Date", width: 150 },
     { field: "upcEan", headerName: "UPC/EAN", width: 150 },
-    { field: "isrc", headerName: "ISRC", width: 160 },
+
     {
       field: "actions",
       headerName: "Actions",

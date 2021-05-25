@@ -25,6 +25,7 @@ function Viewalbum() {
   const [open, setopen] = useState(false);
   const [status, setStatus] = useState("");
   const [message, setmessage] = useState("");
+  const [error, seterror] = useState("");
 
   useEffect(() => {
     firedb
@@ -47,9 +48,10 @@ function Viewalbum() {
       .update({
         status: status,
         message: message,
+        error: error,
       })
       .then(() => {
-        setalbum({ ...album, status: status, message: message });
+        setalbum({ ...album, status: status, message: message, error: error });
 
         notifier.info("status updated.");
       })
@@ -97,9 +99,20 @@ function Viewalbum() {
             <TextField
               autoFocus
               onChange={(e) => setmessage(e.target.value)}
+              defaultValue=""
               margin="dense"
               id="name"
-              label="message"
+              label="Add Message"
+              type="email"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              onChange={(e) => seterror(e.target.value)}
+              defaultValue=""
+              margin="dense"
+              id="name"
+              label="Add Error"
               type="email"
               fullWidth
             />
@@ -131,9 +144,10 @@ function Viewalbum() {
                 </h2>
                 {statusSwitch(album?.status)}
               </div>
-              <p className="">{album.primaryArtist}</p>
-              <p className="">Released at {album.releaseDate}</p>
-              <p className="">UPC {album.upcEan}</p>
+              <p className="">by {album.primaryArtist}</p>
+              <p className="">Released Date: {album.releaseDate}</p>
+              <p className="">UPC: {album.upcEan}</p>
+              <p className="">User: {album.email}</p>
             </div>
           </div>
           {/* action */}
@@ -145,49 +159,46 @@ function Viewalbum() {
               Actions &#x2304;
             </button>
             {show ? (
-              <ul className="absolute bg-white w-64 rounded text-sm text-center border ">
-                <li className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer">
-                  download Audio
-                </li>
-                <li className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer">
+              <ul className="absolute bg-white w-64 rounded font-Light shadow-lg  border cursor-pointer">
+                <li className="h-8 pl-5 p-2 hover:bg-gray-300 ">
                   Download Artwork
                 </li>
-                <li className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer">
-                  Export as csv
+                <li className="h-6 pl-5  hover:bg-gray-100">
+                  Download full catalog (CSV)
                 </li>
-                <li className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer">
-                  Export as xlsx
+                <li className="h-6 pl-5  hover:bg-gray-100">
+                  Download full catalog (XLSX)
                 </li>
 
                 <li
                   onClick={() => setstatus("rejected")}
-                  className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer"
+                  className="h-6 pl-5  hover:bg-gray-100"
                 >
-                  reject
+                  Reject Release
                 </li>
                 <li
                   onClick={() => setstatus("injested")}
-                  className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer"
+                  className="h-6 pl-5  hover:bg-gray-100"
                 >
-                  injest
+                  Injest Release
                 </li>
                 <li
                   onClick={() => setstatus("moderation")}
-                  className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer"
+                  className="h-6 pl-5  hover:bg-gray-100"
                 >
-                  moderation
+                  Moderation Release
                 </li>
                 <li
                   onClick={() => setstatus("approved")}
-                  className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer"
+                  className="h-6 pl-5  hover:bg-gray-100"
                 >
-                  approve
+                  Approve Release
                 </li>
                 <li
                   onClick={() => setstatus("live")}
-                  className="h-10 border-b p-2 hover:bg-gray-300 cursor-pointer"
+                  className="h-6 pl-5  hover:bg-gray-100"
                 >
-                  live
+                  Live Release
                 </li>
               </ul>
             ) : null}

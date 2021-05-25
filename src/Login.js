@@ -74,7 +74,7 @@ function Login() {
         <div className="text-white w-full lg:w-1/2 mt-10  p-5">
           <h1 className="text-7xl">Hello There.</h1>
           <p className="text-2xl my-5 text-gray-500">
-            TrakLab | Client Login Portal
+            TrakLab | Admin Login Portal
           </p>
           <form
             method="get"
