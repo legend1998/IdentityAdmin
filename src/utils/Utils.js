@@ -33,27 +33,45 @@ export function statusSwitch(status) {
   switch (status) {
     case "rejected":
       return (
-        <span className="bg-red-500 text-white p-3 shadow-lg">rejected</span>
+        <button className="bg-red-400 text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Inspection Failed
+        </button>
       );
     case "injested":
       return (
-        <span className="bg-yellow-700 text-white p-3 shadow-lg">injested</span>
+        <button className="bg-indigo-500 text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Locked
+        </button>
       );
     case "moderation":
       return (
-        <span className="bg-blue-400 text-white p-3 shadow-lg">moderation</span>
+        <button className="bg-indigo-500 rounded text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Locked
+        </button>
       );
     case "approved":
       return (
-        <span className="bg-green-500 text-white p-3 shadow-lg">approved</span>
+        <button className="bg-green-500 rounded text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          approved
+        </button>
       );
     case "live":
       return (
-        <span className="bg-green-900 text-white p-3 shadow-lg">live</span>
+        <button className="bg-indigo-500 rounded text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Locked
+        </button>
+      );
+    case "consideration":
+      return (
+        <button className="bg-purple-500 rounded text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Processing
+        </button>
       );
     default:
       return (
-        <span className="bg-yellow-500 text-white p-3 shadow-lg">pending</span>
+        <button className="bg-yellow-500 rounded text-white h-7 w-max text-center p-1 shadow-lg focus:outline-none">
+          Pending
+        </button>
       );
   }
 }

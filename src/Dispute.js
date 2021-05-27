@@ -49,7 +49,7 @@ function Dispute() {
               <input
                 className="flex-grow h-7 outline-none text-gray-700"
                 type="text"
-                placeholder="Search by title, artist, label, UPC"
+                placeholder="Search by Date, Status, Link"
               />
             </div>
             <div className="duration-200">
@@ -60,12 +60,12 @@ function Dispute() {
                 Actions &#x2304;
               </button>
               {show ? (
-                <ul className="absolute bg-white w-64 rounded text-sm text-center border ">
-                  <li className="h-10 border-b p-2 hover:bg-gray-300">
-                    Export as csv
+                <ul className="absolute bg-white w-64 rounded font-Light shadow-lg  border cursor-pointer">
+                  <li className="h-6 pl-5  hover:bg-gray-100">
+                    Download full catalog (CSV)
                   </li>
-                  <li className="h-10 border-b p-2 hover:bg-gray-300">
-                    Export as xlsx
+                  <li className="h-6 pl-5 hover:bg-gray-100">
+                    Download full catalog (XLSX)
                   </li>
                 </ul>
               ) : null}
@@ -107,15 +107,15 @@ function Dispute() {
         <div className="bg-white">
           <table className="table-auto text-xs text-gray-700 w-full text-left">
             <thead>
-              <tr className="h-12 border">
-                <th className=" w-2/6">Date</th>
-                <th className=" w-1/6">Link</th>
+              <tr className="h-12 border text-center">
+                <th className=" w-1/6">Date</th>
+                <th className=" w-4/6">Link</th>
                 <th className=" w-1/6">Status</th>
               </tr>
             </thead>
             <tbody>
               {disputes.map((disp, index) => (
-                <tr key={index}>
+                <tr key={index} className="text-center">
                   <td> {moment(disp.createdAt).format("DD/MM/Y")} </td>
                   <td>
                     <a href={disp.youtubeLink}>{disp.youtubeLink}</a>
@@ -139,22 +139,6 @@ function Dispute() {
               </p>
             </div>
           ) : null}
-        </div>
-        <div className="bg-white my-5">
-          <table className="table-fixed text-xs text-gray-700 w-full h-60">
-            <thead>
-              <tr className="h-12 border">
-                <th className=" w-2/6">Date</th>
-                <th className=" w-1/6">Link</th>
-                <th className=" w-1/6">status</th>
-              </tr>
-            </thead>
-          </table>
-          <div className="w-full h-56 flex items-center justify-center">
-            <p className="text-xs text-gray-500">
-              You have no data to display.
-            </p>
-          </div>
         </div>
       </div>
     </div>

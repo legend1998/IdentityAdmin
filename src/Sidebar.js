@@ -44,6 +44,16 @@ function Sidebar() {
         >
           Assets
         </Link>
+        <Link
+          to="/panel/distribution"
+          className={
+            matchurl.pathname.includes("distribution")
+              ? "my-1 text-gray-100"
+              : "my-1 text-sidetext hover:text-gray-100"
+          }
+        >
+          Distribution
+        </Link>
 
         <Link
           to="/panel/transactions"

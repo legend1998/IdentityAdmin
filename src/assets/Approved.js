@@ -26,25 +26,23 @@ function Approved() {
     history.replace(`/panel/viewAlbum/${row.albumId}`);
   }
   const columns = [
-    { field: "id", headerName: "ID", width: 20 },
-    { field: "title", headerName: "Title", width: 180 },
-    { field: "titleVersion", headerName: "TitleVersion", width: 130 },
-    { field: "primaryArtist", headerName: "Artist", width: 150 },
-    { field: "label", headerName: "Label", width: 130 },
-    { field: "releaseDate", headerName: "Release Date", width: 150 },
-    { field: "upcEan", headerName: "UPC/EAN", width: 150 },
-    { field: "isrc", headerName: "ISRC", width: 160 },
+    { field: "title", headerName: "Title", width: 190 },
+    { field: "titleVersion", headerName: "TitleVersion", width: 110 },
+    { field: "primaryArtist", headerName: "Artist", width: 200 },
+    { field: "recordLabel", headerName: "Label", width: 200 },
+    { field: "genre1", headerName: "Genre", width: 180 },
+    { field: "upcEan", headerName: "UPC/EAN", width: 180 },
     {
       field: "actions",
       headerName: "Actions",
-      width: 130,
+      width: 120,
       renderCell: ({ row }) => (
-        <div className="w-full h-full">
+        <div className="w-full h-full items-center ">
           <button
-            className="appearance-none focus:outline-none w-full h-full border"
+            className="appearance-none focus:outline-none w-20 h-8 bg-indigo-500   text-sm text-white"
             onClick={() => handleclick(row)}
           >
-            <i className="fas fa-edit"></i>
+            View
           </button>
         </div>
       ),

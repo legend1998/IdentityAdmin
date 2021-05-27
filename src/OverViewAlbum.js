@@ -1,4 +1,5 @@
 import React from "react";
+import { statusSwitch } from "./utils/Utils";
 
 function OverViewAlbum({ data }) {
   return (
@@ -7,10 +8,16 @@ function OverViewAlbum({ data }) {
         <img src={data?.coverImage} width="450px" alt="" />
       </div>
       <div className="bg-white flex-1 h-full m-5">
-        <p className="text-md px-5 text-red-600">
-          <span className="text-lg font-bold">Message: </span> {data?.message}
-        </p>
-        <h1 className="text-xl font-semibold py-5 px-10 border-b ">
+        <div className="pb-4 bg-gray-100  text-blue-600 border-b">
+          <p className="h-auto bg-white py-3 pl-3  ">
+            {statusSwitch(data?.status)}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a className="text-lg">{data?.message}</a>
+            <br></br>
+            <a className="text-lg text-red-500">{data?.error}</a>
+          </p>
+        </div>
+        <h1 className="text-xl font-regular py-5 px-10 border-b ">
           Album Info
         </h1>
         <div className="m-10">

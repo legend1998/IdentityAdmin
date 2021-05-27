@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouteMatch, Route, Switch } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import Distribution from "./Distribution";
 import Sidebar from "./Sidebar";
 import Assets from "./Assets";
 import Transactions from "./Transactions";
@@ -18,6 +19,9 @@ function Panel() {
         <Switch>
           <Route path={`${path}/assets`}>
             <Assets />
+          </Route>
+          <Route path={`${path}/distribution`}>
+            <Distribution />
           </Route>
           <Route path={`${path}/transactions`}>
             <Transactions />
