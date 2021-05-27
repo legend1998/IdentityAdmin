@@ -52,12 +52,18 @@ function VIewTrackAlbum({ id }) {
               <p className="h-14 text-center p-5">
                 releaseTitle : {currentTrack.releaseTitle}
               </p>
+
+              <p className="h-14 text-center p-5">
+                Main Artist :
+                {currentTrack?.mainArtist?.map((ar) => (
+                  <span className="font-bold px-3">{ar}</span>
+                ))}
+              </p>
+
               <p className="h-14 text-center p-5">
                 Artist :
                 {currentTrack?.artist?.map((ar) => (
-                  <span className="font-bold px-3">
-                    {ar?.artistname}({ar?.type})
-                  </span>
+                  <span className="font-bold px-3">{ar}</span>
                 ))}
               </p>
               <p className="h-14 text-center p-5">
