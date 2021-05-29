@@ -1,10 +1,11 @@
 import React from "react";
-import Pending from "./assets/Pending";
 import Rejected from "./assets/Rejected";
 import Moderation from "./assets/Moderation";
 import Approved from "./assets/Approved";
 import Injested from "./assets/Injested";
 import Live from "./assets/Live";
+import Takedown from "./assets/Takedown";
+
 import {
   Link,
   Route,
@@ -29,28 +30,17 @@ function Assets() {
       </div>
       <div className="flex border flex-wrap items-center h-14 ">
         <Link
-          to={`${url}/pending`}
+          to={`${url}/injested`}
           className={
-            location.pathname.includes("pending") ||
+            location.pathname.includes("inkested") ||
             location.pathname === "/panel/assets"
               ? active
               : passive
           }
         >
-          Pending
-        </Link>
-        <Link
-          to={`${url}/rejected`}
-          className={location.pathname.includes("rejected") ? active : passive}
-        >
-          Rejected
-        </Link>
-        <Link
-          to={`${url}/injested`}
-          className={location.pathname.includes("injested") ? active : passive}
-        >
           Injested
         </Link>
+
         <Link
           to={`${url}/Moderation`}
           className={
@@ -72,11 +62,20 @@ function Assets() {
         >
           Live
         </Link>
+        <Link
+          to={`${url}/rejected`}
+          className={location.pathname.includes("rejected") ? active : passive}
+        >
+          Rejected
+        </Link>
+        <Link
+          to={`${url}/Takedown`}
+          className={location.pathname.includes("Takedown") ? active : passive}
+        >
+          Takedown
+        </Link>
       </div>
       <Switch>
-        <Route path="/panel/assets/pending">
-          <Pending />
-        </Route>
         <Route path="/panel/assets/rejected">
           <Rejected />
         </Route>
@@ -92,8 +91,11 @@ function Assets() {
         <Route path="/panel/assets/Live">
           <Live />
         </Route>
+        <Route path="/panel/assets/Takedown">
+          <Takedown />
+        </Route>
         <Route path="/panel/assets/">
-          <Pending />
+          <Injested />
         </Route>
       </Switch>
     </div>

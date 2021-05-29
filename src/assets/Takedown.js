@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { DataGrid } from "@material-ui/data-grid";
+import React from "react";
 import { useEffect } from "react";
+import { useState } from "react";
 import { firedb } from "../Firebaseconfig";
-import { useHistory } from "react-router-dom";
-
-function Moderation() {
+import { DataGrid } from "@material-ui/data-grid";
+import { useHistory } from "react-router";
+function Pending() {
   const [album, setalbum] = useState([]);
+
+  //hooks
+
   const history = useHistory();
 
   useEffect(() => {
@@ -13,7 +16,7 @@ function Moderation() {
       var a = [];
       var counter = 1;
       snapshot.forEach((snap) => {
-        if (snap.data()?.status === "moderation") {
+        if (snap.data()?.status === "takedown" || !snap.data()?.status) {
           a.push({ ...snap.data(), id: counter++, albumId: snap.id });
         }
       });
@@ -55,4 +58,4 @@ function Moderation() {
   );
 }
 
-export default Moderation;
+export default Pending;

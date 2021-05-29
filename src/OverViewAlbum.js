@@ -21,35 +21,56 @@ function OverViewAlbum({ data }) {
           Album Info
         </h1>
         <div className="m-10">
-          <p className="">
-            <span className="font-semibold">Title:</span> {data?.title}
+          <p className="capitalize">
+            <span className="font-semibold">Language: </span> {data?.language}
           </p>
           <p className="">
-            <span className="font-semibold">Title Version:</span>
+            <span className="font-semibold">Title: </span> {data?.title}
+          </p>
+          <p className="">
+            <span className="font-semibold">Title Version: </span>
             {data?.titleVersion}
           </p>
           <p className="">
-            <span className="font-semibold">Label:</span> {data?.label}
+            <span className="font-semibold">Label: </span> {data?.recordLabel}
           </p>
           <p className="">
-            <span className="font-semibold">UPC:</span> {data?.upcEan}
+            <span className="font-semibold">UPC: </span> {data?.upcEan}
           </p>
-          <span className="font-semibold">(P):</span> {data?.pCopyright}
           <p>
-            <span className="font-semibold">(C): </span>
+            <span className="font-semibold">(P) Copyright: </span>
+            {data?.pCopyright}
+          </p>
+          <p>
+            <span className="font-semibold">(C) Copyright: </span>
             {data?.Ccopyright}
           </p>
           <p>
-            <span className="font-semibold">Release Date:</span>
+            <span className="font-semibold">Release Date: </span>
             {data?.releaseDate}
           </p>
           <p className="">
-            <span className="font-semibold">Genre:</span> {data?.genre1}
+            <span className="font-semibold">Genre1:</span> {data?.genre1}
           </p>
-          <p>
-            <span className="font-semibold">Language:</span> {data?.language}
+          <p className="">
+            <span className="font-semibold">Genre2:</span> {data?.genre2}
           </p>
         </div>
+      </div>
+      <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
+        <p className="text-black text-lg pl-4 pt-4">
+          Stores: {data?.storInfo.stores}
+        </p>
+      </div>
+      <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
+        <p className="text-black capitalize text-lg pl-4  pt-4">
+          CRBT: {data?.storInfo.telecomPartners}
+        </p>
+      </div>
+      <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
+        <p className="text-black capitalize text-lg pl-4  pt-4">
+          CRBT: {data?.storInfo.youtube}
+        </p>
       </div>
     </div>
   );

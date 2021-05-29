@@ -161,7 +161,9 @@ function Viewalbum() {
             {show ? (
               <ul className="absolute bg-white w-64 rounded font-Light shadow-lg  border cursor-pointer">
                 <li className="h-8 pl-5 p-2 hover:bg-gray-300 ">
-                  Download Artwork
+                  <a href={album?.coverImage} className="" target="blank">
+                    Download Artwork
+                  </a>
                 </li>
                 <li className="h-6 pl-5  hover:bg-gray-100">
                   Download full catalog (CSV)
@@ -199,6 +201,12 @@ function Viewalbum() {
                   className="h-6 pl-5  hover:bg-gray-100"
                 >
                   Live Release
+                </li>
+                <li
+                  onClick={() => setstatus("takedown")}
+                  className="h-6 pl-5  hover:bg-gray-100"
+                >
+                  Takedown Release
                 </li>
               </ul>
             ) : null}

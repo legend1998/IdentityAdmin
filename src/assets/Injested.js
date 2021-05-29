@@ -50,7 +50,7 @@ function Injested() {
     },
   ];
   return (
-    <div className="m-10 h-5/6 bg-white">
+    <div className="m-10 h-4/6 bg-white">
       <DataGrid rows={album} columns={columns} pageSize={20} />
     </div>
   );

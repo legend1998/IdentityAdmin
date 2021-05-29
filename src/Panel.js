@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import Assets from "./Assets";
 import Transactions from "./Transactions";
 import Dispute from "./Dispute";
+import Content from "./Content";
 import Viewalbum from "./Viewalbum";
 import ViewDispute from "./ViewDispute";
 import VIewUser from "./VIewUser";
@@ -43,6 +44,9 @@ function Panel() {
           </Route>
           <Route path={`${path}/dashboard`}>
             <Dashboard />
+          </Route>
+          <Route path={`${path}/content`}>
+            <Content />
           </Route>
           <Route path={`${path}/`}>
             <Dashboard />

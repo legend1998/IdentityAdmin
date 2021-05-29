@@ -3,10 +3,10 @@ import { firedb } from "./Firebaseconfig";
 import { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useHistory } from "react-router-dom";
-import Album from "./Album.js";
-import Tracks from "./Tracks.js";
+import Album from "./LiveAlbum.js";
+import Tracks from "./LiveTrack.js";
 
-function Distribution() {
+function Content() {
   const [tab, settab] = useState(1);
   const [show, setshow] = useState(false);
   const [filter, setfilter] = useState(false);
@@ -61,7 +61,7 @@ function Distribution() {
     <div className="bg-gray-100  h-screen">
       <div className="w-full bg-white h-24 flex items-center shadow-sm">
         <h1 className="text-3xl font-medium ml-8 pl-10 font-graphik ">
-          Distribution
+          Content
         </h1>
       </div>
       <div className="flex border flex-wrap items-center h-16 ">
@@ -97,4 +97,4 @@ function Distribution() {
   );
 }
 
-export default Distribution;
+export default Content;

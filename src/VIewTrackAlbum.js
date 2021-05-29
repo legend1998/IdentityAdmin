@@ -43,7 +43,7 @@ function VIewTrackAlbum({ id }) {
         >
           <DialogTitle id="form-dialog-title">Track Details</DialogTitle>
           <DialogContent>
-            <div className="text-right">
+            <div className="">
               <p className="h-14 text-center p-5">crbt : {currentTrack.crbt}</p>
               <p className="h-14 text-center p-5">
                 titleVersion : {currentTrack.titleVersion}
@@ -54,10 +54,7 @@ function VIewTrackAlbum({ id }) {
               </p>
 
               <p className="h-14 text-center p-5">
-                Main Artist :
-                {currentTrack?.mainArtist?.map((ar) => (
-                  <span className="font-bold px-3">{ar}</span>
-                ))}
+                Main Artist: {currentTrack.mainArtist}
               </p>
 
               <p className="h-14 text-center p-5">
@@ -85,21 +82,23 @@ function VIewTrackAlbum({ id }) {
             <th className="w-2/12 pl-5 font-medium ">Artist</th>
             <th className=" w-2/12 font-medium ">ISRC</th>
             <th className=" w-1/12 text-center font-medium ">CRBT Time</th>
-            <th className="w-4/12 text-center font-medium ">Audio</th>
-            <th className="w-1/12 text-center font-medium ">View</th>
+            <th className="w-1/12 text-center font-medium ">Language</th>
+            <th className="w-3/12 text-center font-medium ">Audio</th>
+            <th className="w-1/12 text-center font-medium "></th>
           </tr>
         </thead>
         <tbody>
           {tracks.map((t, index) => (
             <tr
               key={index}
-              className="h-16 text-left text-sm font-semibold border-b hover:bg-gray-50"
+              className="h-16 text-left text-sm font-medium border-b hover:bg-gray-50"
             >
               <td className=" w-2/12 pl-10 ">{t.releaseTitle}</td>
-              <td className=" w-2/12 pl-5">{t.primaryArtist}</td>
+              <td className=" w-2/12 pl-5">{t.mainArtist}</td>
               <td className=" w-2/12">{t.isrc}</td>
               <td className=" w-1/12 text-center">{t.crbt}</td>
-              <td className=" w-4/12 pl-16">
+              <td className=" w-1/12 text-center">{t.lyricLanguage}</td>
+              <td className=" w-3/12 ">
                 <audio src={t.trackURL} controls></audio>
               </td>
               <td className=" w-1/12 pl-8 ">

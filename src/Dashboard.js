@@ -38,12 +38,12 @@ function Dashboard() {
           <table className="table-fixed w-full text-left">
             <thead>
               <tr>
-                <th className="w-2/12">Name</th>
-                <th className="w-4/12">Email</th>
-                <th className="w-4/12">Subscription Type</th>
+                <th className="w-3/12">Name</th>
+                <th className="w-6/12">Email</th>
+                <th className="w-3/12">Subscription Type</th>
                 <th className="w-2/12">Start</th>
-                <th className="w-3/12">End</th>
-                <th className="w-3/12">action</th>
+                <th className="w-2/12">End</th>
+                <th className="w-1/12">action</th>
               </tr>
             </thead>
             <tbody>
@@ -54,8 +54,8 @@ function Dashboard() {
                   </td>
                   <td>{user?.email}</td>
                   <td>{user?.subType}</td>
-                  <td>{user?.start}</td>
-                  <td>{user?.end}</td>
+                  <td>{user?.startDate}</td>
+                  <td>{user?.endDate}</td>
                   <td>
                     <button
                       onClick={() => handleclick(user.email)}

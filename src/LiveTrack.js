@@ -17,7 +17,7 @@ function Tracks() {
     var a = await firedb.collection("album").get();
     var b = [];
     for (const doc of a.docs) {
-      if (doc.data().status !== "pending") continue;
+      if (doc.data().status !== "live") continue;
       var tracks = await firedb
         .collection("album")
         .doc(doc.id)

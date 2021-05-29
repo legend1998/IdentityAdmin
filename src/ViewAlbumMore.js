@@ -17,18 +17,10 @@ function ViewAlbumMore({ data }) {
               <tr className="h-14 border-b ">
                 <th className=" w-1/6 "></th>
                 <th className=" w-2/6 pr-24 ">Service</th>
-
                 <th className=" w-3/6 ">Link</th>
               </tr>
             </thead>
-            <tbody className="font-regular text-2xl ">
-              <tr className="h-20 text-lg font-regular hover:bg-gray-50 border-b">
-                <td className=" w-2/12 pl-10 "></td>
-                <td className=" w-2/12 pl-5"></td>
-                <td className=" w-2/12"></td>
-                <td className=" w-6/12 pl-20"></td>
-              </tr>
-            </tbody>
+            <tbody className=" text-2xl"></tbody>
           </table>
         </div>
       </div>
