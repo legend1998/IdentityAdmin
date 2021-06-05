@@ -62,10 +62,10 @@ function Dispute() {
               {show ? (
                 <ul className="absolute bg-white w-64 rounded font-Light shadow-lg  border cursor-pointer">
                   <li className="h-6 pl-5  hover:bg-gray-100">
-                    Download full catalog (CSV)
+                    Generate full catalog (CSV)
                   </li>
                   <li className="h-6 pl-5 hover:bg-gray-100">
-                    Download full catalog (XLSX)
+                    Genrate full catalog (XLSX)
                   </li>
                 </ul>
               ) : null}

@@ -1,61 +1,12 @@
 import React, { useState } from "react";
-import { firedb } from "./Firebaseconfig";
-import { useEffect } from "react";
-import { DataGrid } from "@material-ui/data-grid";
-import { useHistory } from "react-router-dom";
 import Album from "./Album.js";
 import Tracks from "./Tracks.js";
 
 function Distribution() {
   const [tab, settab] = useState(1);
-  const [show, setshow] = useState(false);
-  const [filter, setfilter] = useState(false);
-  const history = useHistory();
-  const [album, setalbum] = useState([]);
 
   let active = "border-b-2 border-purple-700 bg-white";
   let passive = "bg-gray-50 text-gray-600 border";
-
-  useEffect(() => {
-    firedb.collection("album").onSnapshot((snapshot) => {
-      var a = [];
-      var counter = 1;
-      snapshot.forEach((snap) => {
-        if (snap.data()?.status === "pending") {
-          a.push({ ...snap.data(), id: counter++, albumId: snap.id });
-        }
-      });
-      setalbum(a);
-    });
-  }, []);
-
-  function handleclick(row) {
-    history.replace(`/panel/viewAlbum/${row.albumId}`);
-  }
-
-  const columns = [
-    { field: "title", headerName: "Title", width: 190 },
-    { field: "titleVersion", headerName: "TitleVersion", width: 110 },
-    { field: "primaryArtist", headerName: "Artist", width: 200 },
-    { field: "recordLabel", headerName: "Label", width: 200 },
-    { field: "genre1", headerName: "Genre", width: 180 },
-    { field: "upcEan", headerName: "UPC/EAN", width: 180 },
-    {
-      field: "actions",
-      headerName: "Actions",
-      width: 120,
-      renderCell: ({ row }) => (
-        <div className="w-full h-full items-center ">
-          <button
-            className="appearance-none focus:outline-none w-20 h-8 bg-indigo-500   text-sm text-white"
-            onClick={() => handleclick(row)}
-          >
-            View
-          </button>
-        </div>
-      ),
-    },
-  ];
 
   return (
     <div className="bg-gray-100  h-screen">

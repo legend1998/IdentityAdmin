@@ -17,7 +17,7 @@ function Album() {
       var a = [];
       var counter = 1;
       snapshot.forEach((snap) => {
-        if (snap.data()?.status === "live" || !snap.data()?.status) {
+        if (snap.data()?.status === "live") {
           a.push({ ...snap.data(), id: counter++, albumId: snap.id });
         }
       });

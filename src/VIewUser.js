@@ -52,19 +52,25 @@ function VIewUser() {
     <div className="bg-gray-100  h-screen">
       <div className="w-full bg-white h-24 flex flex-col items-start justify-center shadow-sm">
         <h1 className="text-3xl font-semibold   pl-10   font-sans ">
-          {user?.fname}
+          {user?.fname} {user?.lname}
         </h1>
         <p className="text-gray-400 pl-10">{user.email}</p>
       </div>
       <div className="bg-white m-8 p-8">
-        <input
-          defaultValue={user.subType}
-          disabled={user.subType}
-          ref={subtyperef}
-          className="focus:outline-none p-3 m-3 border "
+        <select
+          name="subscription"
+          defaultValue={user?.subType}
+          disabled={user?.subType}
+          className="h-12 w-full text-center  p-3 m-3 border  bg-gray-100 focus:outline-none"
           type="text"
           placeholder="subscription type"
-        />
+        >
+          <option value="default"> --Select--</option>
+          <option value="artistunlimited"> Artist Unlimited</option>
+          <option value="advance"> Advance</option>
+          <option value="platinum"> Platinum</option>
+          <option value="whitelabel"> White-Label</option>
+        </select>
         <input
           defaultValue={user.startDate}
           disabled={user.startDate}

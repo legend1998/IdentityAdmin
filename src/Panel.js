@@ -6,6 +6,8 @@ import Sidebar from "./Sidebar";
 import Assets from "./Assets";
 import Transactions from "./Transactions";
 import Dispute from "./Dispute";
+import Chaport from "./Chaport";
+import WhatsApp from "./WhatsApp";
 import Content from "./Content";
 import Viewalbum from "./Viewalbum";
 import ViewDispute from "./ViewDispute";
@@ -20,6 +22,12 @@ function Panel() {
         <Switch>
           <Route path={`${path}/assets`}>
             <Assets />
+          </Route>
+          <Route path={`${path}/WhatsApp`}>
+            <WhatsApp />
+          </Route>
+          <Route path={`${path}/Chaport`}>
+            <Chaport />
           </Route>
           <Route path={`${path}/distribution`}>
             <Distribution />

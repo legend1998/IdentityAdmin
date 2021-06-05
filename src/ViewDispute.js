@@ -102,13 +102,17 @@ function ViewDispute() {
             }
             readOnly
             placeholder="paste youtube link here"
-            className=" appearance-none focus:outline-none bg-gray-100 border h-12 my-5 w-full px-5"
+            className=" appearance-none focus:outline-none bg-gray-50 border h-12 my-5 w-full px-5"
           />
           <br />
-          <p className=" font-normal">Comments</p>
+          <p className=" font-normal">User</p>
+          <div className="h-14 w-full bg-gray-50 border pt-4 text-lg pl-5 ">
+            {dispute.user}
+          </div>
+
+          <p className=" font-normal pt-4 ">Comments</p>
           <textarea
             name="comments"
-            readOnly
             defaultValue={dispute?.comments}
             onChange={(e) =>
               setdispute({ ...dispute, comments: e.target.value })

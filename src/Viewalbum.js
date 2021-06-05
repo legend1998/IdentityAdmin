@@ -26,6 +26,7 @@ function Viewalbum() {
   const [status, setStatus] = useState("");
   const [message, setmessage] = useState("");
   const [error, seterror] = useState("");
+  const [users, setusers] = useState([]);
 
   useEffect(() => {
     firedb
@@ -106,16 +107,18 @@ function Viewalbum() {
               type="email"
               fullWidth
             />
-            <TextField
+
+            <textarea
               autoFocus
-              onChange={(e) => seterror(e.target.value)}
-              defaultValue=""
-              margin="dense"
               id="name"
               label="Add Error"
-              type="email"
-              fullWidth
-            />
+              defaultValue={album?.error}
+              onChange={(e) => seterror(e.target.value)}
+              placeholder="Add Error"
+              className={
+                "border w-full h-64 focus:outline-none p-5 bg-gray-50 text-sm"
+              }
+            ></textarea>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -166,10 +169,10 @@ function Viewalbum() {
                   </a>
                 </li>
                 <li className="h-6 pl-5  hover:bg-gray-100">
-                  Download full catalog (CSV)
+                  Download Metadata (CSV)
                 </li>
                 <li className="h-6 pl-5  hover:bg-gray-100">
-                  Download full catalog (XLSX)
+                  Download Metadata (XLSX)
                 </li>
 
                 <li

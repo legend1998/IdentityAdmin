@@ -1,7 +1,14 @@
 import React from "react";
 import { statusSwitch } from "./utils/Utils";
+import AWN from "awesome-notifications";
 
 function OverViewAlbum({ data }) {
+  function showdetails(status) {
+    if (status?.error) {
+      new AWN().modal(status?.error);
+    }
+  }
+
   return (
     <div className=" flex items-center justify-center flex-wrap">
       <div className="">
@@ -10,13 +17,15 @@ function OverViewAlbum({ data }) {
       <div className="bg-white flex-1 h-full m-5">
         <div className="pb-4 bg-gray-100  text-blue-600 border-b">
           <p className="h-auto bg-white py-3 pl-3  ">
-            {statusSwitch(data?.status)}
+            <button onClick={() => showdetails(data)}>
+              {statusSwitch(data?.status)}
+            </button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a className="text-lg">{data?.message}</a>
             <br></br>
-            <a className="text-lg text-red-500">{data?.error}</a>
           </p>
         </div>
+
         <h1 className="text-xl font-regular py-5 px-10 border-b ">
           Album Info
         </h1>
@@ -57,19 +66,22 @@ function OverViewAlbum({ data }) {
           </p>
         </div>
       </div>
+
       <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
-        <p className="text-black text-lg pl-4 pt-4">
-          Stores: {data?.storInfo.stores}
+        <p className="text-black text-lg p-2 ">
+          <span className="font-medium">Stores: </span>
+          {data?.storInfo.stores}
         </p>
       </div>
       <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
-        <p className="text-black capitalize text-lg pl-4  pt-4">
-          CRBT: {data?.storInfo.telecomPartners}
+        <p className="text-black capitalize text-lg p-2 ">
+          <span className="font-medium">CRBT: </span>{" "}
+          {data?.storInfo.telecomPartners}
         </p>
       </div>
       <div className="h-full w-full p-2 mt-5 bg-white  mr-5 ">
-        <p className="text-black capitalize text-lg pl-4  pt-4">
-          CRBT: {data?.storInfo.youtube}
+        <p className="text-black capitalize text-lg p-2  ">
+          <span className="font-medium ">Claim: </span> {data?.storInfo.youtube}
         </p>
       </div>
     </div>
