@@ -82,10 +82,13 @@ export function statusSwitch(status) {
       );
   }
 }
-export function getEarnigns(data) {
+export function getSum(data) {
   var total = 0;
   data.forEach((d) => {
-    total += Number(d.earnings);
+    Object.keys(d).forEach((key) => {
+      if (key === "year" || key === "month") return;
+      total += d[key];
+    });
   });
 
   return total;

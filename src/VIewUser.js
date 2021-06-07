@@ -48,6 +48,8 @@ function VIewUser() {
       });
   }
 
+  console.log(user)
+
   return (
     <div className="bg-gray-100  h-screen">
       <div className="w-full bg-white h-24 flex flex-col items-start justify-center shadow-sm">
@@ -59,6 +61,7 @@ function VIewUser() {
       <div className="bg-white m-8 p-8">
         <select
           name="subscription"
+          ref={subtyperef} 
           defaultValue={user?.subType}
           disabled={user?.subType}
           className="h-12 w-full text-center  p-3 m-3 border  bg-gray-100 focus:outline-none"

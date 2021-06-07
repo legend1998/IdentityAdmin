@@ -30,7 +30,7 @@ function VIewTrackAlbum({ id }) {
     setCurrentTrack(t);
     setopen(true);
   }
-
+  console.log(currentTrack);
   console.log(currentTrack);
   return (
     <div className="bg-white">
@@ -57,12 +57,12 @@ function VIewTrackAlbum({ id }) {
                 Main Artist: {currentTrack.mainArtist}
               </p>
 
-              <p className="h-14 text-center p-5">
+              <div className=" text-left p-5">
                 Artist :
                 {currentTrack?.artist?.map((ar) => (
-                  <span className="font-bold px-3">{ar}</span>
+                  <p> <span className="font-bold px-3">{ar.type}</span> <span className="font-bold px-3">{ar.artistname}</span></p>
                 ))}
-              </p>
+              </div>
               <p className="h-14 text-center p-5">
                 lyricLanguage : {currentTrack.lyricLanguage}
               </p>
