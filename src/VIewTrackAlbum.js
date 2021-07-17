@@ -60,7 +60,11 @@ function VIewTrackAlbum({ id }) {
               <div className=" text-left p-5">
                 Artist :
                 {currentTrack?.artist?.map((ar) => (
-                  <p> <span className="font-bold px-3">{ar.type}</span> <span className="font-bold px-3">{ar.artistname}</span></p>
+                  <p>
+                    {" "}
+                    <span className="font-bold px-3">{ar.type}</span>{" "}
+                    <span className="font-bold px-3">{ar.artistname}</span>
+                  </p>
                 ))}
               </div>
               <p className="h-14 text-center p-5">
@@ -75,47 +79,47 @@ function VIewTrackAlbum({ id }) {
           </DialogActions>
         </Dialog>
       </div>
-      <table className="table-fixed text-gray-700 w-full h-full">
-        <thead className="text-left">
-          <tr className="h-12 border">
-            <th className=" w-2/12 pl-10 font-medium ">Track Name</th>
-            <th className="w-2/12 pl-5 font-medium ">Artist</th>
-            <th className=" w-2/12 font-medium ">ISRC</th>
-            <th className=" w-1/12 text-center font-medium ">CRBT Time</th>
-            <th className="w-1/12 text-center font-medium ">Language</th>
-            <th className="w-3/12 text-center font-medium ">Audio</th>
-            <th className="w-1/12 text-center font-medium "></th>
-          </tr>
-        </thead>
-        <tbody>
-          {tracks.map((t, index) => (
-            <tr
-              key={index}
-              className="h-16 text-left text-sm font-medium border-b hover:bg-gray-50"
-            >
-              <td className=" w-2/12 pl-10 ">{t.releaseTitle}</td>
-              <td className=" w-2/12 pl-5">{t.mainArtist}</td>
-              <td className=" w-2/12">{t.isrc}</td>
-              <td className=" w-1/12 text-center">{t.crbt}</td>
-              <td className=" w-1/12 text-center">{t.lyricLanguage}</td>
-              <td className=" w-3/12 ">
-                <audio src={t.trackURL} controls></audio>
-              </td>
-              <td className=" w-1/12 pl-8 ">
-                <button
-                  className="h-6 w-12 bg-blue-500 hover:bg-blue-800 text-white text-center justify-center"
-                  onClick={() => {
-                    setCurrentTrack(t);
-                    setopen(true);
-                  }}
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div>
+        <div className="bg-white mt-2 max-h-screen overflow-y-scroll  ">
+          <table className=" capitalize table-fixed text-sm text-black w-full text-left overflow-scroll border-b">
+            <thead className=" ">
+              <tr className="h-16 border-b font-medium tracking-wide text-base  ">
+                <th className=" w-24 "></th>
+                <th className=" w-2/6 pl-2 font-medium text-base">
+                  Track Name
+                </th>
+                <th className=" w-1/6 font-medium text-base">Artist</th>
+                <th className=" w-1/6 font-medium text-base">Explicit</th>
+                <th className=" w-1/6 font-medium text-base">Language</th>
+                <th className=" w-1/6 font-medium text-base">ISRC</th>
+              </tr>
+            </thead>
+            <tbody className="cursor-pointer ">
+              {tracks.map((t, index) => (
+                <tr className="h-20 text-lg font-Regular text-filter hover:bg-hover border-b">
+                  <td className="text-center pl-6"></td>
+                  <td className=" w-2/6  ">
+                    <div className="flex justify-start items-center">
+                      <p className="pl-2"> {t.releaseTitle}</p>
+                    </div>
+                  </td>
+                  <td className=" w-1/6">{t.mainArtist}</td>
+                  <td className=" w-2/6">{t.explicit}</td>
+                  <td className=" w-1/6">{t.lyricLanguage}</td>
+                  <td className=" w-1/6">{t.isrc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {tracks.length === 0 ? (
+            <div className="w-full h-56 flex items-center justify-center">
+              <p className="text-sm text-sidetext">
+                You have no data to display.
+              </p>
+            </div>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,103 +1,48 @@
-import React from "react";
-import Rejected from "./assets/Rejected";
-import Moderation from "./assets/Moderation";
-import Approved from "./assets/Approved";
-import Injested from "./assets/Injested";
-import Live from "./assets/Live";
-import Takedown from "./assets/Takedown";
-
-import {
-  Link,
-  Route,
-  Switch,
-  useLocation,
-  useRouteMatch,
-} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Album from "./Albums";
+import Tracks from "./Tracks";
+import { firedb } from "./Firebaseconfig";
 
 function Assets() {
-  const location = useLocation();
-  let { url } = useRouteMatch();
+  const [tab, settab] = useState(1);
 
-  let active =
-    "flex-1 text-center h-full py-3 border-b-2 border-purple-700 bg-white";
-  let passive =
-    "flex-1 text-center py-3 h-full bg-gray-50 text-gray-600 border";
+  let active = "border-b-2 border-tabborder bg-white font-medium ";
+  let passive = "bg-tab text-sidetext border ";
 
   return (
-    <div className="bg-gray-100  h-screen">
-      <div className="w-full bg-white h-24 flex items-center shadow-sm">
-        <h1 className="text-3xl font-semibold ml-8 pl-10 font-sans ">Music</h1>
+    <div className="bg-background min-h-full ">
+      <div className="w-full bg-white h-24 flex border-b items-center shadow-sm  ">
+        <h1 className="text-4xl font-medium ml-14   ">Assets</h1>
       </div>
-      <div className="flex border flex-wrap items-center h-14 ">
-        <Link
-          to={`${url}/injested`}
-          className={
-            location.pathname.includes("inkested") ||
-            location.pathname === "/panel/assets"
-              ? active
-              : passive
-          }
+      <div className="flex  flex-wrap items-center h-16  ">
+        <div
+          onClick={() => settab(1)}
+          className={`flex-grow py-5 cursor-pointer hover:text-black   ${
+            tab === 1 ? active : passive
+          }`}
         >
-          Injested
-        </Link>
-
-        <Link
-          to={`${url}/Moderation`}
-          className={
-            location.pathname.includes("Moderation") ? active : passive
-          }
+          <i className="fas fa-compact-disc mx-5 "></i>Albums
+        </div>
+        <div
+          onClick={() => settab(2)}
+          className={`flex-grow py-5 cursor-pointer hover:text-black ${
+            tab === 2 ? active : passive
+          }`}
         >
-          Moderation
-        </Link>
-        <Link
-          to={`${url}/Approved`}
-          className={location.pathname.includes("Approved") ? active : passive}
+          <i className="fas fa-music mx-5 "></i> Tracks
+        </div>
+        <div
+          onClick={() => settab(3)}
+          className={`flex-grow py-5 cursor-pointer hover:text-black ${
+            tab === 3 ? active : passive
+          }`}
         >
-          Approved
-        </Link>
-
-        <Link
-          to={`${url}/Live`}
-          className={location.pathname.includes("Live") ? active : passive}
-        >
-          Live
-        </Link>
-        <Link
-          to={`${url}/rejected`}
-          className={location.pathname.includes("rejected") ? active : passive}
-        >
-          Rejected
-        </Link>
-        <Link
-          to={`${url}/Takedown`}
-          className={location.pathname.includes("Takedown") ? active : passive}
-        >
-          Takedown
-        </Link>
+          <i className="fas fa-video mx-5"></i> Video
+        </div>
       </div>
-      <Switch>
-        <Route path="/panel/assets/rejected">
-          <Rejected />
-        </Route>
-        <Route path="/panel/assets/Moderation">
-          <Moderation />
-        </Route>
-        <Route path="/panel/assets/Approved">
-          <Approved />
-        </Route>
-        <Route path="/panel/assets/Injested">
-          <Injested />
-        </Route>
-        <Route path="/panel/assets/Live">
-          <Live />
-        </Route>
-        <Route path="/panel/assets/Takedown">
-          <Takedown />
-        </Route>
-        <Route path="/panel/assets/">
-          <Injested />
-        </Route>
-      </Switch>
+
+      {tab === 1 ? <Album /> : null}
+      {tab === 2 ? <Tracks /> : null}
     </div>
   );
 }

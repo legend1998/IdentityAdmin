@@ -52,12 +52,12 @@ function ViewDispute() {
   }
 
   return (
-    <div className="h-screen overflow-y-auto bg-gray-100">
+    <div className="h-screen overflow-y-auto bg-background">
       <div className="w-full bg-white h-24  flex items-center justify-between shadow-sm">
         <h1 className="text-3xl font-semibold ml-8 font-sans ">Dispute</h1>
         <p className="text-sm font-light mr-8 ">Dispute</p>
       </div>
-      <div className="sticky flex items-center justify-between p-5">
+      <div className="sticky flex items-center justify-between m-10">
         <div className="">{statusSwitch(dispute?.status)}</div>
         <div className="">
           <button
@@ -91,7 +91,7 @@ function ViewDispute() {
           ) : null}
         </div>
       </div>
-      <div className="p-5 ">
+      <div className="m-10 ">
         <div className=" p-5 bg-white">
           <p className=" font-normal">Youtube Link</p>
           <input
@@ -102,11 +102,11 @@ function ViewDispute() {
             }
             readOnly
             placeholder="paste youtube link here"
-            className=" appearance-none focus:outline-none bg-gray-50 border h-12 my-5 w-full px-5"
+            className=" appearance-none focus:outline-none bg-box h-14 my-5 w-full px-5"
           />
           <br />
           <p className=" font-normal">User</p>
-          <div className="h-14 w-full bg-gray-50 border pt-4 text-lg pl-5 ">
+          <div className="h-14 w-full bg-box  pt-4 text-lg pl-5 ">
             {dispute.user}
           </div>
 
@@ -118,9 +118,7 @@ function ViewDispute() {
               setdispute({ ...dispute, comments: e.target.value })
             }
             placeholder="any comments"
-            className={
-              "border w-full h-64 focus:outline-none p-5 bg-gray-50 text-sm"
-            }
+            className={" w-full h-64 focus:outline-none p-5 bg-box text-sm"}
           ></textarea>
           <textarea
             name="comments"
@@ -130,9 +128,7 @@ function ViewDispute() {
               setdispute({ ...dispute, message: e.target.value })
             }
             placeholder="reply a message ............"
-            className={
-              "border w-full h-64 focus:outline-none p-5 bg-gray-50 text-sm"
-            }
+            className={" w-full h-64 focus:outline-none p-5 bg-box text-sm"}
           ></textarea>
           <button
             onClick={() => updateDispute()}

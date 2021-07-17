@@ -68,9 +68,9 @@ function Viewalbum() {
   }
 
   const passive =
-    "text-gray-500 bg-gray-200 w-1/4 text-center h-16 py-5 cursor-pointer";
+    "text-gray-500 border-b-2  border-tab text-base bg-tab w-1/4 text-center h-16 py-5 cursor-pointer";
   const active =
-    "border-b  border-indigo-500 bg-white w-1/4 text-center py-5 h-16 cursor-pointer";
+    "border-b-2  border-indigo-500 bg-white w-1/4 text-center py-5 h-16 font-medium cursor-pointer";
 
   function handleClose() {
     setopen(false);
@@ -243,7 +243,7 @@ function Viewalbum() {
           </span>
         </div>
         {/* body */}
-        <div className="bg-gray-100 min-h-screen p-10">
+        <div className="bg-background min-h-screen p-10">
           {tab === 1 ? <OverViewAlbum data={album} /> : null}
           {tab === 2 ? <VIewTrackAlbum id={params.id} /> : null}
           {tab === 3 ? (

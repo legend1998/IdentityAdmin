@@ -17,7 +17,7 @@ function App() {
       <Helmet>
         <title>{TITLE}</title>
       </Helmet>
-      <div className="App  font-graphik ">
+      <div className="App font-graphik ">
         <Router>
           <Switch>
             {user ? (

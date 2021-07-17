@@ -34,37 +34,38 @@ function Sidebar() {
         >
           Start
         </Link>
+
         <Link
-          to="/panel/assets"
+          to="/panel/Assets"
           className={
-            matchurl.pathname.includes("assets")
+            matchurl.pathname.includes("Assets")
               ? "my-1 text-gray-100"
               : "my-1 text-sidetext hover:text-gray-100"
           }
         >
           Assets
         </Link>
-        <Link
-          to="/panel/distribution"
-          className={
-            matchurl.pathname.includes("distribution")
-              ? "my-1 text-gray-100"
-              : "my-1 text-sidetext hover:text-gray-100"
-          }
-        >
-          Distribution
-        </Link>
-        <Link
-          to="/panel/content"
-          className={
-            matchurl.pathname.includes("content")
-              ? "my-1 text-gray-100"
-              : "my-1 text-sidetext hover:text-gray-100"
-          }
-        >
-          Live Assets
-        </Link>
 
+        <Link
+          to="/panel/music"
+          className={
+            matchurl.pathname.includes("music")
+              ? "my-1 text-gray-100"
+              : "my-1 text-sidetext hover:text-gray-100"
+          }
+        >
+          Music
+        </Link>
+        <Link
+          to="/panel/RightHolders"
+          className={
+            matchurl.pathname.includes("RightHolders")
+              ? "my-1 text-gray-100"
+              : "my-1 text-sidetext hover:text-gray-100"
+          }
+        >
+          Right Holders
+        </Link>
         <Link
           to="/panel/transactions"
           className={

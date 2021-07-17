@@ -60,7 +60,7 @@ function NewTransaction() {
     return;
   }
   return (
-    <div className="w-full bg-gray-100 h-full">
+    <div className="w-full bg-background h-full">
       <div className="w-full bg-white h-24 flex items-center justify-start shadow-sm">
         <i
           onClick={() => {
@@ -73,7 +73,7 @@ function NewTransaction() {
         </h1>
       </div>
       <div className="m-10 bg-white p-10">
-        <div className="py-4">
+        <div className="py-4 ">
           <select
             ref={userref}
             name=""
@@ -87,12 +87,13 @@ function NewTransaction() {
                 });
             }}
             id=""
-            className="border h-12 p-2 focus:outline-none w-full text-xl"
+            className="border bg-box h-12 p-2 focus:outline-none w-full text-xl"
           >
-            <option value="default">--select a customer--</option>
+            <option value="default">--Select a customer--</option>
             {users.map((u, i) => (
               <option key={i} value={u?.email}>
-                {u?.fname + " " + u?.lname} ({" " + u?.email}) {u?.labelName}
+                {u?.fname + " " + u?.lname} {"|"} {u?.labelName} {"|"} (
+                {" " + u?.email})
               </option>
             ))}
           </select>
@@ -102,7 +103,7 @@ function NewTransaction() {
             ref={moderef}
             name=""
             id=""
-            className="border h-12 p-2 focus:outline-none w-full text-xl"
+            className="border bg-box h-12 p-2 focus:outline-none w-full text-xl"
           >
             <option value="default" defaultChecked>
               --select a mode--
@@ -117,7 +118,7 @@ function NewTransaction() {
             type="number"
             defaultValue="0"
             min="0"
-            className="border h-12 p-2 focus:outline-none w-full text-xl"
+            className="border bg-box h-12 p-2 focus:outline-none w-full text-xl"
           />
         </div>
         <div className="py-4">
@@ -125,7 +126,7 @@ function NewTransaction() {
             ref={statusref}
             name=""
             id=""
-            className="border h-12 p-2 focus:outline-none w-full text-xl"
+            className="border bg-box h-12 p-2 focus:outline-none w-full text-xl"
           >
             <option value="paid" defaultChecked>
               paid
@@ -134,7 +135,7 @@ function NewTransaction() {
         </div>
         <button
           onClick={() => handletransaction()}
-          className="border h-12 p-2 focus:outline-none w-full bg-blue-500 text-white hover:bg-blue-700"
+          className="border h-12 p-2 mt-5 focus:outline-none w-full bg-blue-500 text-white hover:bg-blue-700"
         >
           Initiate Transaction
         </button>

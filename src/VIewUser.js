@@ -48,10 +48,10 @@ function VIewUser() {
       });
   }
 
-  console.log(user)
+  console.log(user);
 
   return (
-    <div className="bg-gray-100  h-screen">
+    <div className="bg-background  min-h-screen">
       <div className="w-full bg-white h-24 flex flex-col items-start justify-center shadow-sm">
         <h1 className="text-3xl font-semibold   pl-10   font-sans ">
           {user?.fname} {user?.lname}
@@ -61,7 +61,7 @@ function VIewUser() {
       <div className="bg-white m-8 p-8">
         <select
           name="subscription"
-          ref={subtyperef} 
+          ref={subtyperef}
           defaultValue={user?.subType}
           disabled={user?.subType}
           className="h-12 w-full text-center  p-3 m-3 border  bg-gray-100 focus:outline-none"
@@ -104,31 +104,32 @@ function VIewUser() {
         <div className="ml-5 font-semibold">
           <span>Account Name:</span>
         </div>
-        <div className="bg-gray-50  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
+        <div className="bg-box  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
           {user.labelName}
         </div>
         <div className="ml-5 pt-3 font-semibold">
           <span>Payee Mode:</span>
         </div>
-        <div className="bg-gray-50 capitalize pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
+        <div className="bg-box capitalize pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
           {user.paymentPreference?.mode}
         </div>
         <div className="ml-5 pt-3 font-semibold">
           <span>Payee ID:</span>
         </div>
-        <div className="bg-gray-50  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
+        <div className="bg-box  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
           {user.paymentPreference?.id}
         </div>
       </div>
 
-      <div className="bg-white h-max  m-8 p-8">
+      <div className="bg-box h-max  m-8 p-8">
         <div className="ml-5 font-semibold">
           <span>Total Earnings: </span>
         </div>
-        <div className="bg-gray-50  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
+        <div className="bg-box  pl-5 border h-14 w-full text-black font-regular text-lg pt-3 ml-3">
           {user.transactionStat?.total}
         </div>
       </div>
+      <div className="h-2"></div>
     </div>
   );
 }
